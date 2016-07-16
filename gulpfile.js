@@ -4,6 +4,7 @@ const nodemon = require('gulp-nodemon');
 const browserSync = require('browser-sync');
 const browserify = require('browserify');
 const source = require('vinyl-source-stream');
+const concat = require('gulp-concat');
 const config = require('./config');
 
 function startBrowserSync() {
@@ -38,7 +39,7 @@ gulp.task('serve', ['build'], () => {
 });
 
 gulp.task('build', ['buildServer', 'buildClient']);
-gulp.task('buildClient', ['copyIndex', 'copyPublic', 'browserify']);
+gulp.task('buildClient', ['copyIndex', 'copyPublic', 'browserify', 'buildStyles']);
 
 gulp.task('buildServer', () =>
 gulp.src(config.serverSourceJS)
@@ -68,5 +69,11 @@ gulp.src(config.clientSourceHTML)
 
 gulp.task('copyPublic', () =>
 gulp.src(config.publicSource)
+.pipe(gulp.dest(config.publicTarget))
+);
+
+gulp.task('buildStyles', () =>
+gulp.src(config.clientSourceCSS)
+.pipe(concat('main.css'))
 .pipe(gulp.dest(config.publicTarget))
 );

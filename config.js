@@ -4,8 +4,14 @@ module.exports = {
   otherPort: 3000,
   server: './build/server/index.js',
   clientSource: ['./app/client/**/*', '!./app/temp'],
-  clientSourceJS: './app/client/**/*.@(js|jsx)',
+  clientSourceJS: [
+    './app/client/**/*.@(js|jsx)',
+  ],
   clientSourceHTML: 'app/client/index.html',
+  clientSourceCSS: [
+    './app/client/styles/**/*.css',
+    './app/node_modules/bootstrap/dist/css/bootstrap.css',
+  ],
   clientTarget: './build/client',
   temp: './app/temp',
   serverSource: './app/server',
