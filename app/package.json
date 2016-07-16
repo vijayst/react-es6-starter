@@ -1,0 +1,17 @@
+{
+  "name": "auction_app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "bootstrap": "^3.3.6",
+    "express": "^4.14.0",
+    "jquery": "^1.9.1",
+    "react": "^15.2.1",
+    "socket.io": "^1.4.8"
+  }
+}
