@@ -27,7 +27,6 @@
     "gulp-concat": "^2.6.0",
     "gulp-nodemon": "^2.1.0",
     "mocha": "^2.5.3",
-    "reactify": "^1.1.1",
     "vinyl-source-stream": "^1.1.0"
   }
 }

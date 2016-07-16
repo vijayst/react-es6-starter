@@ -3,7 +3,6 @@ const babel = require('gulp-babel');
 const nodemon = require('gulp-nodemon');
 const browserSync = require('browser-sync');
 const browserify = require('browserify');
-const reactify = require('reactify');
 const source = require('vinyl-source-stream');
 const config = require('./config');
 
