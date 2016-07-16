@@ -13,16 +13,6 @@ io.on('connection', (socket) => {
 
 app.use(bodyParser.json());
 app.use(express.static(`${__dirname}/public`));
-app.use('/scripts', express.static(`${__dirname}/client/`));
-
-const jqueryJs = `${__dirname}/node_modules/jquery`;
-app.use('/scripts', express.static(jqueryJs));
-const angularJs = `${__dirname}/node_modules/angular/`;
-app.use('/scripts', express.static(angularJs));
-const bootstrapJs = `${__dirname}/node_modules/bootstrap/dist/js`;
-app.use('/scripts', express.static(bootstrapJs));
-const bootstrapCss = `${__dirname}/node_modules/bootstrap/dist/css`;
-app.use('/styles', express.static(bootstrapCss));
 
 app.get('/', (req, res) => {
   const indexFile = path.resolve(__dirname, '../client/index.html');
@@ -30,5 +20,5 @@ app.get('/', (req, res) => {
 });
 
 server.listen(9000, () => {
-  console.log('listening on port 9000');
+  console.log('listening on port 9000', __dirname);
 });

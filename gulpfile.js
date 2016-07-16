@@ -1,8 +1,11 @@
 const gulp = require('gulp');
 const babel = require('gulp-babel');
 const nodemon = require('gulp-nodemon');
-const config = require('./config');
 const browserSync = require('browser-sync');
+const browserify = require('browserify');
+const reactify = require('reactify');
+const source = require('vinyl-source-stream');
+const config = require('./config');
 
 function startBrowserSync() {
   if (browserSync.active) {
@@ -36,7 +39,7 @@ gulp.task('serve', ['build'], () => {
 });
 
 gulp.task('build', ['buildServer', 'buildClient']);
-gulp.task('buildClient', ['buildClientJS', 'copyHtml', 'copyPublic', 'copyModules']);
+gulp.task('buildClient', ['buildClientJS', 'copyHtml', 'copyPublic']);
 
 gulp.task('buildServer', () =>
 gulp.src(config.serverSourceJS)
@@ -46,7 +49,11 @@ gulp.src(config.serverSourceJS)
 
 gulp.task('buildClientJS', () =>
 gulp.src(config.clientSourceJS)
-.pipe(babel({ presets: ['es2015'] }))
+.pipe(browserify({
+  entries: ['./app/client/index.js'],
+  transform: [reactify],
+}).bundle())
+.pipe(source('index.js'))
 .pipe(gulp.dest(config.clientTarget))
 );
 
@@ -58,9 +65,4 @@ gulp.src(config.clientSourceHTML)
 gulp.task('copyPublic', () =>
 gulp.src('app/public/**/*')
 .pipe(gulp.dest('build/public'))
-);
-
-gulp.task('copyModules', () =>
-gulp.src('app/node_modules/**/*')
-.pipe(gulp.dest('build/node_modules'))
 );
