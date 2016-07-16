@@ -2,6 +2,7 @@ import express from 'express';
 import http from 'http';
 import bodyParser from 'body-parser';
 import socketio from 'socket.io';
+import path from 'path';
 
 const app = express();
 const server = http.createServer(app);
@@ -24,8 +25,8 @@ const bootstrapCss = `${__dirname}/node_modules/bootstrap/dist/css`;
 app.use('/styles', express.static(bootstrapCss));
 
 app.get('/', (req, res) => {
-  // res.sendFile(`${__dirname}/index.html`);
-  res.send('hello world 4');
+  const indexFile = path.resolve(__dirname, '../client/index.html');
+  res.sendFile(indexFile);
 });
 
 server.listen(9000, () => {
