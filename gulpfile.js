@@ -1,32 +1,36 @@
 const gulp = require('gulp');
 const babel = require('gulp-babel');
+const nodemon = require('gulp-nodemon');
+const config = require('./config');
+
+gulp.task('serve', ['build'], () => {
+  const options = {
+    script: config.server,
+    delayTime: 1,
+    env: {
+      PORT: config.port,
+      NODE_ENV: 'dev',
+    },
+    watch: [config.serverPath, config.clientPath],
+  };
+  return nodemon(options)
+  .on('restart', ['build']);
+});
 
 gulp.task('build', ['buildJs', 'copyHtml', 'copyPublic', 'copyModules']);
 
-gulp.task('buildJs', ['buildLib', 'buildModels', 'buildClient', 'buildIndex']);
+gulp.task('buildJs', ['buildServer', 'buildClient']);
 
-gulp.task('buildModels', () =>
-  gulp.src('app/models/**/*.js')
+gulp.task('buildServer', () =>
+  gulp.src(config.serverJsSource)
   .pipe(babel({ presets: ['es2015'] }))
-  .pipe(gulp.dest('build/models'))
-);
-
-gulp.task('buildLib', () =>
-  gulp.src('app/lib/**/*.js')
-  .pipe(babel({ presets: ['es2015'] }))
-  .pipe(gulp.dest('build/lib'))
+  .pipe(gulp.dest(config.serverJsTarget))
 );
 
 gulp.task('buildClient', () =>
-  gulp.src('app/client/**/*.js')
+  gulp.src(config.clientJsSource)
   .pipe(babel({ presets: ['es2015'] }))
-  .pipe(gulp.dest('build/client'))
-);
-
-gulp.task('buildIndex', () =>
-  gulp.src('app/index.js')
-  .pipe(babel({ presets: ['es2015'] }))
-  .pipe(gulp.dest('build'))
+  .pipe(gulp.dest(config.clientJsTarget))
 );
 
 gulp.task('copyHtml', () =>
