@@ -12,7 +12,8 @@ io.on('connection', (socket) => {
 });
 
 app.use(bodyParser.json());
-app.use(express.static(`${__dirname}/public`));
+const publicFolder = path.resolve(__dirname, '../public');
+app.use(express.static(publicFolder));
 
 app.get('/', (req, res) => {
   const indexFile = path.resolve(__dirname, '../client/index.html');

@@ -16,7 +16,7 @@ function startBrowserSync() {
   const options = {
     proxy: `${config.host}:${config.port}`,
     port: config.otherPort,
-    files: [config.clientTarget],
+    files: [config.clientTarget, config.publicTarget],
     injectChanges: true,
     reloadDelay: 1000,
   };
@@ -39,7 +39,7 @@ gulp.task('serve', ['build'], () => {
 });
 
 gulp.task('build', ['buildServer', 'buildClient']);
-gulp.task('buildClient', ['buildClientJS', 'copyHtml', 'copyPublic']);
+gulp.task('buildClient', ['copyIndex', 'copyPublic', 'browserify']);
 
 gulp.task('buildServer', () =>
 gulp.src(config.serverSourceJS)
@@ -47,22 +47,27 @@ gulp.src(config.serverSourceJS)
 .pipe(gulp.dest(config.serverTarget))
 );
 
-gulp.task('buildClientJS', () =>
+gulp.task('buildReact', () =>
 gulp.src(config.clientSourceJS)
-.pipe(browserify({
-  entries: ['./app/client/index.js'],
-  transform: [reactify],
-}).bundle())
-.pipe(source('index.js'))
-.pipe(gulp.dest(config.clientTarget))
+.pipe(babel({ presets: ['react', 'es2015'] }))
+.pipe(gulp.dest(config.temp))
 );
 
-gulp.task('copyHtml', () =>
+gulp.task('browserify', ['buildReact'], () =>
+browserify({
+  entries: [`${config.temp}/index.js`],
+})
+.bundle()
+.pipe(source('main.js'))
+.pipe(gulp.dest(config.publicTarget))
+);
+
+gulp.task('copyIndex', () =>
 gulp.src(config.clientSourceHTML)
 .pipe(gulp.dest(config.clientTarget))
 );
 
 gulp.task('copyPublic', () =>
-gulp.src('app/public/**/*')
-.pipe(gulp.dest('build/public'))
+gulp.src(config.publicSource)
+.pipe(gulp.dest(config.publicTarget))
 );
