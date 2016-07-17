@@ -1,11 +1,12 @@
 import jQuery from 'jquery';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Map from './imports/common/map';
 
 window.$ = window.jQuery = jQuery;
-const bootstrap = require('bootstrap');
+require('bootstrap');
 
 ReactDOM.render(
-  <h1>Hello, world 2</h1>,
+  <Map />,
   document.getElementById('example')
 );

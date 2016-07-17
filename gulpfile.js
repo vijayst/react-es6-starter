@@ -23,6 +23,8 @@ function startBrowserSync() {
   browserSync(options);
 }
 
+gulp.task('default', ['serve']);
+
 gulp.task('serve', ['build'], () => {
   const options = {
     script: config.server,
