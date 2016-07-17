@@ -10,7 +10,6 @@ module.exports = {
   clientSourceHTML: 'app/client/index.html',
   clientSourceCSS: [
     './app/client/styles/**/*.css',
-    './app/node_modules/bootstrap/dist/css/bootstrap.css',
   ],
   clientTarget: './build/client',
   temp: './app/temp',

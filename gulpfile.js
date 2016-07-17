@@ -72,7 +72,19 @@ gulp.src(config.publicSource)
 .pipe(gulp.dest(config.publicTarget))
 );
 
-gulp.task('buildStyles', () =>
+gulp.task('copyBootstrap', ['copyBootstrapCss', 'copyBootstrapFonts']);
+
+gulp.task('copyBootstrapCss', () =>
+gulp.src('./app/node_modules/bootstrap/dist/css/**/*')
+.pipe(gulp.dest(`${config.publicTarget}/bootstrap/css`))
+);
+
+gulp.task('copyBootstrapFonts', () =>
+gulp.src('./app/node_modules/bootstrap/dist/fonts/**/*')
+.pipe(gulp.dest(`${config.publicTarget}/bootstrap/fonts`))
+);
+
+gulp.task('buildStyles', ['copyBootstrap'], () =>
 gulp.src(config.clientSourceCSS)
 .pipe(concat('main.css'))
 .pipe(gulp.dest(config.publicTarget))
