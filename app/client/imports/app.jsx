@@ -1,6 +1,7 @@
 import React from 'react';
 import VolunteerForm from './volunteer/form';
 import PatientDisplay from './patient/display';
+import Map from './common/map';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -29,6 +30,7 @@ export default class App extends React.Component {
             <PatientDisplay volunteers={this.state.volunteers} />
           </div>
         </div>
+        <Map />
       </div>
     );
   }
