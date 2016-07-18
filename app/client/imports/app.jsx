@@ -1,7 +1,6 @@
 import React from 'react';
-import VolunteerForm from './volunteer/form';
-import PatientDisplay from './patient/display';
-import Map from './common/map';
+import DonorForm from './donorForm';
+import PatientDisplay from './patientDisplay';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -22,7 +21,7 @@ export default class App extends React.Component {
     return (
       <div>
         <div className="well">
-          <VolunteerForm onSubmit={this.handleSubmit} />
+          <DonorForm onSubmit={this.handleSubmit} />
         </div>
         <div className="panel panel-primary">
           <div className="panel-heading">Volunteers</div>
@@ -30,7 +29,6 @@ export default class App extends React.Component {
             <PatientDisplay volunteers={this.state.volunteers} />
           </div>
         </div>
-        <Map />
       </div>
     );
   }
