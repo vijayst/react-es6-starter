@@ -25,7 +25,7 @@ export default class Form extends React.Component {
     return (
       <form className="form form-horizontal" onSubmit={this.handleSubmit}>
         <div className="form-group">
-          <label htmlFor="name">Name: </label>
+          <label htmlFor="name">Donor Name: </label>
           <input
             type="text"
             className="form-control"
