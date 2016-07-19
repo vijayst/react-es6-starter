@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class Display extends React.Component {
+export default class PatientDisplay extends React.Component {
   render() {
     return (
       <div>
@@ -16,6 +16,6 @@ export default class Display extends React.Component {
   }
 }
 
-Display.propTypes = {
+PatientDisplay.propTypes = {
   volunteers: React.PropTypes.array.isRequired,
 };

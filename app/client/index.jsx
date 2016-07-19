@@ -1,12 +1,18 @@
 import jQuery from 'jquery';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './imports/app';
+import App from './components/app';
+import { configureStore } from './store/configureStore';
+import { Provider } from 'react-redux';
+
+const store = configureStore();
 
 window.$ = window.jQuery = jQuery;
 require('bootstrap');
 
 ReactDOM.render(
-  <App />,
-  document.getElementById('example')
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('app')
 );

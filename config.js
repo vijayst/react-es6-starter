@@ -2,8 +2,8 @@ module.exports = {
   host: 'localhost',
   port: 9000,
   otherPort: 3000,
-  server: './build/server/index.js',
-  clientSource: ['./app/client/**/*', '!./app/temp'],
+  server: './app/build/server/index.js',
+  clientSource: ['./app/client/**/*', '!./app/temp', '!./app/build'],
   clientSourceJS: [
     './app/client/**/*.@(js|jsx)',
   ],
@@ -11,11 +11,11 @@ module.exports = {
   clientSourceCSS: [
     './app/client/styles/**/*.css',
   ],
-  clientTarget: './build/client',
+  clientTarget: './app/build/client',
   temp: './app/temp',
   serverSource: './app/server',
   serverSourceJS: './app/server/**/*.js',
-  serverTarget: './build/server',
+  serverTarget: './app/build/server',
   publicSource: './app/public/**/*',
-  publicTarget: './build/public',
+  publicTarget: './app/build/public',
 };

@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class Form extends React.Component {
+export default class DonorForm extends React.Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
@@ -45,6 +45,6 @@ export default class Form extends React.Component {
   }
 }
 
-Form.propTypes = {
+DonorForm.propTypes = {
   onSubmit: React.PropTypes.func.isRequired,
 };
