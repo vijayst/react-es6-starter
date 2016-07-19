@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import donors from './donorReducer';
+import donorReducer from './donorReducer';
 
 const rootReducer = combineReducers({
-  donors,
+  donors: donorReducer,
 });
 
 export default rootReducer;

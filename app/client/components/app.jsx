@@ -6,15 +6,10 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.state = {
-      volunteers: [],
-    };
   }
 
   handleSubmit(v) {
-    const volunteers = this.state.volunteers.slice();
-    volunteers.push(v);
-    this.setState({ volunteers });
+    this.props.onAddDonor(v);
   }
 
   render() {
@@ -29,10 +24,15 @@ export default class App extends React.Component {
         <div className="panel panel-primary">
           <div className="panel-heading">Donors</div>
           <div className="panel-body">
-            <PatientDisplay volunteers={this.state.volunteers} />
+            <PatientDisplay volunteers={this.props.donors} />
           </div>
         </div>
       </div>
     );
   }
 }
+
+App.propTypes = {
+  donors: React.PropTypes.array,
+  onAddDonor: React.PropTypes.func,
+};

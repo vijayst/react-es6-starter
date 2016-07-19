@@ -1,7 +1,7 @@
 import jQuery from 'jquery';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/app';
+import AppContainer from './containers/appContainer';
 import { configureStore } from './store/configureStore';
 import { Provider } from 'react-redux';
 
@@ -12,7 +12,7 @@ require('bootstrap');
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <AppContainer />
   </Provider>,
   document.getElementById('app')
 );

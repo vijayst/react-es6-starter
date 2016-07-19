@@ -11,8 +11,8 @@ export default class DonorForm extends React.Component {
   }
 
   handleSubmit(e) {
-    this.props.onSubmit({ name: this.state.value });
     e.preventDefault();
+    this.props.onSubmit({ name: this.state.value });
   }
 
   handleChange(e) {
@@ -21,6 +21,7 @@ export default class DonorForm extends React.Component {
     });
     e.preventDefault();
   }
+
   render() {
     return (
       <form className="form form-horizontal" onSubmit={this.handleSubmit}>
