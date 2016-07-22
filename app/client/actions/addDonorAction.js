@@ -1,6 +1,6 @@
 import { actionTypes } from './actionTypes';
 
-export function addDonor(donor) {
+export function addDonorAction(donor) {
   return {
     type: actionTypes.addDonor,
     donor,

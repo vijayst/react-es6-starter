@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { addDonor } from '../actions/donorActions';
+import { addDonorAction } from '../actions/addDonorAction';
 import App from '../components/app';
 
 const mapStateToProps = (state) => {
@@ -10,7 +10,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onAddDonor: (donor) => dispatch(addDonor(donor)),
+    onAddDonor: (donor) => dispatch(addDonorAction(donor)),
   };
 };
 
