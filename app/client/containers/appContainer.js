@@ -14,7 +14,6 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-
 const AppContainer = connect(
   mapStateToProps,
   mapDispatchToProps
