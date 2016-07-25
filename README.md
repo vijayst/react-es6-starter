@@ -17,3 +17,6 @@
 * npm i
 * gulp
 * Browse at http://localhost:3000
+
+Article at [CodeMentor] (https://www.codementor.io/reactjs/tutorial/react-app-with-redux-to-manage-data-flows). 
+
